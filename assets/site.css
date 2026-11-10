@@ -381,7 +381,9 @@ kbd { font-family: var(--mono); font-size: 12px; padding: 3px 8px; border-radius
 .hero-video { transform: scaleX(-1) }
 
 /* Page colour field: one generated per page, fixed behind everything, kept faint */
-.aura { position: fixed; inset: 0; z-index: -1; pointer-events: none; background-size: cover; background-position: center; opacity: .18 }
+/* Overshoots the viewport so the colour field still fills the space behind
+   phone browser toolbars (iOS Safari lets the page show through there). */
+.aura { position: fixed; top: -10vh; left: 0; right: 0; height: 120vh; height: calc(100lvh + 20vh); z-index: -1; pointer-events: none; background-size: cover; background-position: center; opacity: .18 }
 @media (max-width: 720px) { .aura { opacity: .2 } }
 
 
