@@ -1,0 +1,8 @@
+# Everything committed here is served on thegothicfolly.com (Vercel deploys the
+# repo as-is). Keep this list to local tooling only; never ignore site assets.
+.vercel
+.DS_Store
+.claude/
+.playwright-mcp/
+.autocontext/
+node_modules/

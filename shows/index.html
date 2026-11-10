@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Design a Show — The Gothic Folly</title>
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Josefin+Sans:wght@300;400;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Page-specific overrides ── */
+
+    .hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      z-index: 0;
+    }
+
+    .hero-video-overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg,
+          rgba(8,5,32,0.55) 0%,
+          rgba(8,5,32,0.35) 40%,
+          rgba(8,5,32,0.65) 80%,
+          rgba(8,4,20,0.92) 100%);
+      z-index: 1;
+    }
+
+    .hero-content { z-index: 2; }
+
+    /* hero for shows has no background image */
+    .hero { background-image: none; background-color: var(--playa); }
+
+    /* ── Top nav bar ── */
+    .shows-nav {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 10;
+      padding: 1.2rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .shows-nav a {
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--sand-dark);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .shows-nav a:hover { color: var(--gold-light); }
+
+    /* ── Hero title override ── */
+    .hero-title-shows {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 9vw, 6.5rem);
+      font-weight: 600;
+      line-height: 1.05;
+      letter-spacing: 0.06em;
+      color: var(--white);
+      text-shadow: 0 2px 40px rgba(192,40,144,0.5);
+      margin-bottom: 0.4rem;
+    }
+
+    .hero-subtitle {
+      font-family: var(--font-display);
+      font-size: clamp(1.2rem, 3vw, 1.8rem);
+      font-weight: 300;
+      color: var(--gold-light);
+      letter-spacing: 0.08em;
+      margin-bottom: 1.5rem;
+    }
+
+    /* ── Simulator showcase ── */
+    .sim-showcase {
+      padding: 7rem 0;
+      background: linear-gradient(180deg, var(--playa) 0%, #1A0848 100%);
+    }
+
+    .sim-showcase-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    @media (max-width: 820px) {
+      .sim-showcase-grid { grid-template-columns: 1fr; }
+    }
+
+    .sim-video-wrap {
+      border-radius: 4px;
+      overflow: hidden;
+      border: 1px solid rgba(208,68,120,0.25);
+      box-shadow: 0 0 40px rgba(192,40,144,0.2);
+    }
+
+    .sim-video-wrap video {
+      width: 100%;
+      display: block;
+    }
+
+    .sim-text .lead {
+      font-size: 1.25rem;
+      font-style: italic;
+      color: var(--sand-light);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .sim-text p {
+      color: var(--sand);
+      margin-bottom: 1.2rem;
+    }
+
+    /* ── Screenshots section ── */
+    .screenshots {
+      padding: 7rem 0;
+      background: #100840;
+    }
+
+    .screenshots-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+    @media (max-width: 640px) { .screenshots-grid { grid-template-columns: 1fr; } }
+
+    .screenshot-item {
+      border-radius: 4px;
+      overflow: hidden;
+      border: 1px solid rgba(208,68,120,0.2);
+      box-shadow: 0 0 20px rgba(192,40,144,0.1);
+    }
+
+    .screenshot-item img {
+      width: 100%;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .screenshot-item:hover img { transform: scale(1.02); }
+
+    .screenshot-caption {
+      padding: 0.75rem 1rem;
+      background: rgba(255,255,255,0.03);
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      color: var(--sand-dark);
+      font-family: var(--font-display);
+      text-align: center;
+    }
+
+    /* ── Call to action section ── */
+    .shows-cta {
+      padding: 7rem 0;
+      background: linear-gradient(180deg, #1A0848 0%, #260C60 100%);
+      text-align: center;
+    }
+
+    .shows-cta .lead {
+      font-size: 1.25rem;
+      font-style: italic;
+      color: var(--sand);
+      max-width: 680px;
+      margin: 0 auto 1.5rem;
+      line-height: 1.7;
+    }
+
+    .shows-cta p {
+      color: var(--sand-dark);
+      max-width: 580px;
+      margin: 0 auto 2.5rem;
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+
+    .btn-xl {
+      font-size: 1rem;
+      padding: 1.1rem 3rem;
+      letter-spacing: 0.15em;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO — video background (blue rose window) -->
+  <header class="hero">
+    <video class="hero-video" autoplay muted loop playsinline>
+      <source src="videos/blue-rose.mp4" type="video/mp4" />
+    </video>
+    <div class="hero-video-overlay"></div>
+
+    <nav class="shows-nav">
+      <a href="/">← The Gothic Folly</a>
+      <a href="https://wiki.thegothicfolly.com/light-show-design/" target="_blank">Full Documentation ↗</a>
+    </nav>
+
+    <div class="hero-content">
+      <p class="hero-eyebrow">Black Rock City · Est. 2026</p>
+      <h1 class="hero-title-shows">Design a Show</h1>
+      <p class="hero-subtitle">Your ideas. Your cathedral.</p>
+      <p class="hero-tagline">The Gothic Folly's 23,000 LEDs will come alive from the inspiration of a community of makers. Beginners are welcome.</p>
+      <div class="hero-cta">
+        <a href="https://wiki.thegothicfolly.com/light-show-design/" class="btn btn-primary btn-xl">Start Building Your Show</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- 3D SIMULATOR SHOWCASE -->
+  <section class="sim-showcase">
+    <div class="container">
+      <div class="section-ornament">
+        <span class="ornament-line"></span>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2 L14 9 L21 9 L15.5 13.5 L17.5 20.5 L12 16 L6.5 20.5 L8.5 13.5 L3 9 L10 9 Z" fill="#D04478" opacity="0.7"/>
+        </svg>
+        <span class="ornament-line"></span>
+      </div>
+      <h2 class="section-title">Preview in a 3D Simulator</h2>
+
+      <div class="sim-showcase-grid">
+        <div class="sim-video-wrap">
+          <video autoplay muted loop playsinline>
+            <source src="videos/3d-simulator-website.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <div class="sim-text">
+          <p class="lead">You don't need to wait until Burning Man to see your show. Design it, then watch it run on a live 3D model of the full cathedral — right in your browser.</p>
+          <p>The Gothic Folly show-builder package includes a downloadable 3D simulator and a 2D rose window preview. Use free, open-source tools — either xLights or TouchDesigner — to create your sequence, then watch it come alive in real time.</p>
+          <p>Every zone is represented: arches, spires, rose window, canopy, orbs. What you see in the simulator is what will run on the playa.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREENSHOTS -->
+  <section class="screenshots">
+    <div class="container">
+      <div class="section-ornament">
+        <span class="ornament-line ornament-line--light"></span>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2 L14 9 L21 9 L15.5 13.5 L17.5 20.5 L12 16 L6.5 20.5 L8.5 13.5 L3 9 L10 9 Z" fill="#D04478" opacity="0.7"/>
+        </svg>
+        <span class="ornament-line ornament-line--light"></span>
+      </div>
+      <h2 class="section-title section-title--light">Real Tools. Real Results.</h2>
+
+      <div class="screenshots-grid">
+        <div class="screenshot-item">
+          <img src="images/colorful-xlights-cathedral.png" alt="xLights sequence editor with the Gothic Folly cathedral layout" />
+          <div class="screenshot-caption">xLights sequence editor — drag effects onto any zone</div>
+        </div>
+        <div class="screenshot-item">
+          <img src="images/sim-rose-window.png" alt="Rose window 2D simulator in the browser" />
+          <div class="screenshot-caption">Rose window simulator — 16 petals, live sACN preview</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CALL TO ACTION -->
+  <section class="shows-cta">
+    <div class="container">
+      <div class="section-ornament">
+        <span class="ornament-line"></span>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2 L14 9 L21 9 L15.5 13.5 L17.5 20.5 L12 16 L6.5 20.5 L8.5 13.5 L3 9 L10 9 Z" fill="#D04478" opacity="0.7"/>
+        </svg>
+        <span class="ornament-line"></span>
+      </div>
+      <h2 class="section-title">Anyone Can Build a Show</h2>
+
+      <p class="lead">No experience with LED sequencing? No problem. We put together a complete beginner-friendly show-builder package — everything you need to start creating.</p>
+      <p>Download the package, open it in xLights (free, takes 5 minutes to set up), and start dragging effects onto the cathedral. The full step-by-step guide is waiting for you.</p>
+
+      <div class="cta-buttons">
+        <a href="https://wiki.thegothicfolly.com/light-show-design/" class="btn btn-primary btn-xl">Get the Show-Builder Guide</a>
+      </div>
+
+      <p style="font-size: 0.9rem; color: var(--playa-warm); font-style: italic;">Your sequence could run on the real installation on the playa at Burning Man 2026.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p class="footer-title">The Gothic Folly</p>
+    <p class="footer-sub">Black Rock City · Est. 2026</p>
+    <a class="footer-instagram" href="https://www.instagram.com/thegothicfolly" target="_blank">@thegothicfolly</a>
+    <p class="footer-credit">A community art installation. Made with light.</p>
+  </footer>
+
+</body>
+</html>
