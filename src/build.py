@@ -29,8 +29,15 @@ HEAD = """<!doctype html>
 <meta name="theme-color" content="#0A0B12">
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{desc}">
-<meta property="og:image" content="img/night-cyan.jpg">
+<meta property="og:image" content="https://thegothicfolly.com/img/share.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The Gothic Folly lit cyan at night, its rose window glowing between the spires">
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="The Gothic Folly">
+<meta property="og:url" content="{url}">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="{url}">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -108,6 +115,7 @@ def nav(current):
 
 for f, label, title, desc in PAGES:
     body = (ROOT / "src" / "pages" / f).read_text()
-    html = HEAD.format(title=title, desc=desc, fonts=FONTS.replace("&", "&amp;"), links=nav(f)) + body + FOOT
+    url = "https://thegothicfolly.com/" + ("" if f == "index.html" else f)
+    html = HEAD.format(title=title, desc=desc, url=url, fonts=FONTS.replace("&", "&amp;"), links=nav(f)) + body + FOOT
     (ROOT / f).write_text(html)
     print("built", f, len(html))
