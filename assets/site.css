@@ -435,8 +435,8 @@ kbd { font-family: var(--mono); font-size: 12px; padding: 3px 8px; border-radius
 
 /* ---------- Contact page: press kit ---------- */
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0 }
-.epk .sec-head { gap: 18px }
-.epk-cover { display: block; max-width: 420px; aspect-ratio: 640 / 828; box-shadow: 0 24px 60px -24px rgba(0,0,0,.7), 0 0 0 1px var(--line); transition: transform .25s }
+.epk-text { display: flex; flex-direction: column; gap: 18px; margin-top: 36px }
+.epk-cover { display: block; max-width: 360px; aspect-ratio: 640 / 828; box-shadow: 0 24px 60px -24px rgba(0,0,0,.7), 0 0 0 1px var(--line); transition: transform .25s }
 .epk-cover:hover { transform: translateY(-3px) }
 .epk-cover:focus-visible { outline: 2px solid var(--bone); outline-offset: 4px }
 @media (max-width: 900px) { .epk-cover { max-width: 300px } }
