@@ -23,7 +23,7 @@ generated locally from `src/pages/` by `src/build.py`. The repository is
 ## Files
 
 - `index.html`, `about.html`, `builds.html`, `folly-mix.html`, `press.html`,
-  `gallery.html`, `support.html`: the pages. They are generated: edit the
+  `gallery.html`, `contact.html`, `support.html`: the pages. They are generated: edit the
   matching file in `src/pages/` (or the shared head, nav and footer in
   `src/build.py`), then run `python3 src/build.py` and commit both.
 - `assets/site.css`: the design system. Fonts: Inter Tight (display), Inter
@@ -36,6 +36,9 @@ generated locally from `src/pages/` by `src/build.py`. The repository is
 - `img/`: images the pages use. New images go here and must be committed.
   Prefer JPG for photos, keep files under ~500 KB where possible. `img/aura/`
   holds the per-page background colour fields from `src/aura.py`.
+- `files/The-Gothic-Folly-EPK.pdf`: the press kit offered on `contact.html`.
+  Replace the file in place (same name) when the EPK changes, and update the
+  page count, size and date shown next to the download button.
 - `video/`: silent looping MP4s (home hero, Folly Mix walkthrough).
 - `shows/`: the LED shows subpage (`shows/index.html`, `shows/images/`,
   `shows/videos/`). It still uses the older `style.css`; keep that file.

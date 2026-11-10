@@ -21,7 +21,8 @@ pages are plain HTML committed to the repo. Vercel is connected to this reposito
 
 | Path | What it is |
 |---|---|
-| `index.html`, `about.html`, `builds.html`, `folly-mix.html`, `press.html`, `gallery.html`, `support.html` | the pages (generated, see below) |
+| `index.html`, `about.html`, `builds.html`, `folly-mix.html`, `press.html`, `gallery.html`, `contact.html`, `support.html` | the pages (generated, see below) |
+| `files/The-Gothic-Folly-EPK.pdf` | the press kit, downloadable from the Contact page |
 | `src/pages/` | the content of each page: edit these |
 | `src/build.py` | wraps each page in the shared head, nav and footer |
 | `assets/site.css` | all styling: colour and type tokens at the top, light mode at the bottom |

@@ -12,6 +12,7 @@ PAGES = [
     ("folly-mix.html", "Folly Mix",      "Folly Mix · The Gothic Folly",         "Folly Mix is custom software coded specifically for the Gothic Folly. It plays all 35,900 of its programmable LEDs in time with the music. Try the demo."),
     ("press.html",   "Press",            "Press · The Gothic Folly",             "Coverage of the Gothic Folly and resources for the press."),
     ("gallery.html", "Gallery",          "Gallery · The Gothic Folly",           "Photographs of the Gothic Folly by day and by night."),
+    ("contact.html", "Contact",          "Contact · The Gothic Folly",           "Collaborate with the Gothic Folly, download the press kit, or send us a message."),
     ("support.html", "Support",          "Support & Crew · The Gothic Folly",    "Donate to the Gothic Folly or join the crew that builds it."),
 ]
 
@@ -84,7 +85,7 @@ FOOT = """</main>
       </div>
       <div>
         <h4>Get involved</h4>
-        <ul><li><a href="support.html#donate">Donate</a></li><li><a href="support.html#crew">Join the crew</a></li><li><a href="builds.html#collaborate">Collaborate</a></li><li><a href="support.html#contact">Contact</a></li></ul>
+        <ul><li><a href="support.html#donate">Donate</a></li><li><a href="support.html#crew">Join the crew</a></li><li><a href="contact.html#collaborate">Collaborate</a></li><li><a href="contact.html#press-kit">Press kit</a></li><li><a href="contact.html">Contact</a></li></ul>
       </div>
       <div>
         <h4>Follow</h4>

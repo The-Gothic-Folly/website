@@ -4,7 +4,7 @@ import numpy as np, pathlib
 from PIL import Image, ImageFilter
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-PAGES = {"home": 11, "about": 23, "builds": 37, "folly-mix": 41, "press": 53, "gallery": 67, "support": 79}
+PAGES = {"home": 11, "about": 23, "builds": 37, "folly-mix": 41, "press": 53, "gallery": 67, "support": 79, "contact": 89}
 W, H = 1600, 1100
 # banded like the original reference (light, dark, bright seam, light again), but only in blues and purples,
 # ending in the site's own night colour
