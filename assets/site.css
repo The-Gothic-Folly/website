@@ -440,3 +440,8 @@ kbd { font-family: var(--mono); font-size: 12px; padding: 3px 8px; border-radius
 .epk-cover:hover { transform: translateY(-3px) }
 .epk-cover:focus-visible { outline: 2px solid var(--bone); outline-offset: 4px }
 @media (max-width: 900px) { .epk-cover { max-width: 300px } }
+
+/* Builds: full-width film under a timeline entry */
+.tl-video { grid-column: 2; margin-top: 8px }
+.tl-video video { display: block; width: 100%; height: auto; aspect-ratio: 1080 / 754; background: #050508 }
+@media (max-width: 920px) { .tl-video { grid-column: 1 } }
