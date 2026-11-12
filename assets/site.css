@@ -334,6 +334,7 @@ kbd { font-family: var(--mono); font-size: 12px; padding: 3px 8px; border-radius
 .configs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px }
 .configs figure { display: flex; flex-direction: column; gap: 14px }
 .configs img { width: 100%; height: auto; border-radius: 8px; background: #F4F2EE }
+.configs img.on-dark { background: #0F1016 }
 .configs figcaption { display: flex; flex-direction: column; gap: 2px; margin: 0; font-family: var(--sans); font-size: 15.5px; color: var(--ash) }
 .configs figcaption b { font-family: var(--display); font-weight: 500; font-size: 20px; letter-spacing: -.01em; color: var(--bone) }
 @media (max-width: 720px) { .configs { grid-template-columns: minmax(0, 1fr); gap: 48px } }
