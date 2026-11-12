@@ -215,3 +215,21 @@
     });
   }
 })();
+
+/* ---------- Units: metric unless the viewer appears to be in the US ----------
+   Pages are written in feet; each measurement is wrapped as
+   <span class="u" data-metric="18 m">60 ft</span>. Location comes from the
+   browser's time zone (no permission prompt), with the language region as a
+   fallback. Liberia and Myanmar also use imperial. */
+(function () {
+  var els = document.querySelectorAll(".u[data-metric]");
+  if (!els.length) return;
+  var imperial = false;
+  try {
+    var tz = Intl.DateTimeFormat().resolvedOptions().timeZone || "";
+    if (tz) imperial = /^(America\/(New_York|Detroit|Kentucky|Indiana|Chicago|Menominee|North_Dakota|Denver|Boise|Phoenix|Los_Angeles|Anchorage|Juneau|Sitka|Metlakatla|Yakutat|Nome|Adak|Puerto_Rico)|Pacific\/(Honolulu|Guam|Saipan|Pago_Pago)|US\/|Africa\/Monrovia|Asia\/(Yangon|Rangoon))/.test(tz);
+    else imperial = /-US\b/i.test((navigator.languages && navigator.languages[0]) || navigator.language || "");
+  } catch (e) { imperial = true; }
+  if (imperial) return;
+  els.forEach(function (el) { el.textContent = el.getAttribute("data-metric"); });
+})();
