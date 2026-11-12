@@ -445,3 +445,5 @@ kbd { font-family: var(--mono); font-size: 12px; padding: 3px 8px; border-radius
 .tl-video { grid-column: 2; margin-top: 8px }
 .tl-video video { display: block; width: 100%; height: auto; aspect-ratio: 1080 / 754; background: #050508 }
 @media (max-width: 920px) { .tl-video { grid-column: 1 } }
+.tl-video-tall { max-width: 420px }
+.tl-video-tall video { aspect-ratio: 720 / 1280 }
