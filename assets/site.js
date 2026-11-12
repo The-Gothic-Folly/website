@@ -44,18 +44,26 @@
     lb.className = "lightbox"; lb.hidden = true; lb.setAttribute("role", "dialog"); lb.setAttribute("aria-modal", "true"); lb.setAttribute("aria-label", "Photo viewer");
     lb.innerHTML = '<button class="lb-close" type="button" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>' +
       '<button class="lb-nav lb-prev" type="button" aria-label="Previous photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>' +
-      '<img alt=""><p></p>' +
+      '<img alt=""><video controls muted loop playsinline hidden></video><p></p>' +
       '<button class="lb-nav lb-next" type="button" aria-label="Next photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>';
     document.body.appendChild(lb);
-    var img = lb.querySelector("img"), cap = lb.querySelector("p"), idx = 0, last = null;
+    var img = lb.querySelector("img"), vid = lb.querySelector("video"), cap = lb.querySelector("p"), idx = 0, last = null;
     function show(i) {
       idx = (i + items.length) % items.length;
-      var b = items[idx], src = b.querySelector("img");
-      img.src = src.getAttribute("src"); img.alt = src.alt;
+      var b = items[idx], v = b.getAttribute("data-video");
+      if (v) {
+        img.hidden = true; img.removeAttribute("src");
+        vid.hidden = false; vid.src = v; vid.setAttribute("aria-label", b.getAttribute("aria-label").replace(/^Play video: /, ""));
+        var pv = b.querySelector("video"); if (pv && pv.poster) vid.poster = pv.poster;
+        try { var pr = vid.play(); if (pr && pr.catch) pr.catch(function () {}); } catch (e) {}
+      } else {
+        vid.pause(); vid.hidden = true; vid.removeAttribute("src");
+        var src = b.querySelector("img"); img.hidden = false; img.src = src.getAttribute("src"); img.alt = src.alt;
+      }
       var fc = b.closest("figure") && b.closest("figure").querySelector("figcaption");
       cap.textContent = fc ? fc.textContent : "";
     }
-    function close() { lb.hidden = true; document.body.style.overflow = ""; if (last) last.focus(); }
+    function close() { vid.pause(); lb.hidden = true; document.body.style.overflow = ""; if (last) last.focus(); }
     items.forEach(function (b, i) { b.addEventListener("click", function () { last = b; show(i); lb.hidden = false; document.body.style.overflow = "hidden"; lb.querySelector(".lb-close").focus(); }); });
     lb.querySelector(".lb-close").addEventListener("click", close);
     lb.querySelector(".lb-prev").addEventListener("click", function () { show(idx - 1); });
