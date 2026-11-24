@@ -17,7 +17,7 @@ PAGES = [
 ]
 
 FONTS = ("https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Inter+Tight:wght@400;500"
-         "&family=JetBrains+Mono:wght@400&display=swap")
+         "&family=Space+Grotesk:wght@400;500&display=swap")
 
 HEAD = """<!doctype html>
 <html lang="en">
